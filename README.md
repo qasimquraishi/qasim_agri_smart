@@ -297,51 +297,61 @@ with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
 # Output path for user to download
 str(zip_path)
 
-# Recreate ZIP and files after execution state reset
-from pathlib import Path
-import zipfile
-from PIL import Image, ImageDraw, ImageFont
-
-out_dir = Path("/mnt/data/agrismart_final_prototype")
-out_dir.mkdir(parents=True, exist_ok=True)
-
-# Simple versions of files to ensure execution
-files = {
-    "index.html": "<html><body>Index</body></html>",
-    "prices.html": "<html><body>Prices</body></html>",
-    "buy.html": "<html><body>Buy</body></html>",
-    "sell.html": "<html><body>Sell</body></html>",
-    "chatbot.html": "<html><body>Chatbot</body></html>",
-    "cart.html": "<html><body>Cart</body></html>",
-    "styles.css": "body{font-family:Arial}"
-}
-
-for name, content in files.items():
-    (out_dir / name).write_text(content, encoding="utf-8")
-
-# Create placeholder images
-def create_image(path, text, size=(800,500), bgcolor=(240,248,233)):
-    img = Image.new("RGB", size, bgcolor)
-    d = ImageDraw.Draw(img)
-    try:
-        fnt = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 36)
-    except:
-        fnt = ImageFont.load_default()
-    w,h = d.textsize(text, font=fnt)
-    d.text(((size[0]-w)/2,(size[1]-h)/2), text, font=fnt, fill=(46,125,50))
-    img.save(path, quality=85)
-
-create_image(out_dir / "prod_seeds.jpg", "Certified Wheat Seeds")
-create_image(out_dir / "prod_fert.jpg", "Fertilizer Pack")
-create_image(out_dir / "prod_tool.jpg", "Hand Seeder")
-create_image(out_dir / "trend.png", "Price Trend (Sample)", size=(1000,400))
-create_image(out_dir / "logo.png", "AS", size=(200,200))
-
-zip_path = Path("/mnt/data/AgriSmart_Final_Prototype.zip")
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
-    for f in sorted(out_dir.iterdir()):
-        zf.write(f, arcname=f.name)
-
-str(zip_path)
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agricultural Supplies</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1593121957289-1f1892878b8b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .hero h1 {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 0.5em 1em;
+      border-radius: 8px;
+      font-size: 3rem;
+      max-width: 80%;
+    }
+    .content {
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      background: #f9f9f9;
+    }
+    .content img {
+      width: 300px;
+      max-width: 90%;
+      border-radius: 8px;
+    }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .content { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>High-Quality Seeds & Fertilizers</h1>
+  </section>
+  <section class="content">
+    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80" alt="Seeds" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1578321316424-40cd32a8dd52?auto=format&fit=crop&w=800&q=80" alt="Fertilizer" loading="lazy">
+  </section>
+</body>
+</html>
