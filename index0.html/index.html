@@ -1,0 +1,90 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>AgriSmart Market - Prototype</title>
+<link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+<!-- Splash Screen -->
+<div id="splash" class="splash">
+  <div class="splash-inner">
+    <img src="logo.png" alt="logo" class="splash-logo"/>
+    <h1>AgriSmart Market</h1>
+    <p>AI Powered E-commerce for Smart Farming</p>
+    <div class="loader"><div></div><div></div><div></div></div>
+  </div>
+</div>
+
+<!-- App Container -->
+<div id="app" class="app hidden">
+  <header class="app-header">
+    <div class="title">AgriSmart Market</div>
+    <div class="sub">Smart Farming • فصل کے لیے سمارٹ حل</div>
+  </header>
+
+  <main class="app-main">
+<section class="hero">
+  <h1>High-Quality Seeds & Fertilizers</h1>
+</section>
+<section class="content">
+  <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80" alt="Seeds" loading="lazy">
+  <img src="https://images.unsplash.com/photo-1578321316424-40cd32a8dd52?auto=format&fit=crop&w=800&q=80" alt="Fertilizer" loading="lazy">
+</section>
+
+    <section class="welcome">
+      <h2>خوش آمدید</h2>
+      <p>Apka digital bazaar for crops & tools — simple & farmer friendly</p>
+    </section>
+
+    <nav class="grid">
+      <a class="card" href="prices.html"><img src="icon-prices.svg"/><span>Crop Prices<br/><small>فصل کے ریٹ</small></span></a>
+      <a class="card" href="buy.html"><img src="icon-buy.svg"/><span>Buy<br/><small>خریداری</small></span></a>
+      <a class="card" href="sell.html"><img src="icon-sell.svg"/><span>Sell Crops<br/><small>اپنی فصل بیچیں</small></span></a>
+      <a class="card" href="chatbot.html"><img src="icon-chat.svg"/><span>Chatbot<br/><small>مدد</small></span></a>
+    </nav>
+
+    <section class="featured">
+      <h3>Featured Products</h3>
+      <div class="products-row">
+        <div class="product">
+          <img src="prod_seeds.jpg" alt="Seeds"/>
+          <div class="pinfo"><strong>Certified Wheat Seeds</strong><span>PKR 1,200</span></div>
+        </div>
+        <div class="product">
+          <img src="prod_fert.jpg" alt="Fertilizer"/>
+          <div class="pinfo"><strong>Fertilizer Pack</strong><span>PKR 800</span></div>
+        </div>
+        <div class="product">
+          <img src="prod_tool.jpg" alt="Tool"/>
+          <div class="pinfo"><strong>Hand Seeder</strong><span>PKR 1,500</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="active"><img src="icon-home.svg"/><small>Home</small></a>
+    <a href="prices.html"><img src="icon-prices.svg"/><small>Prices</small></a>
+    <a href="buy.html"><img src="icon-buy.svg"/><small>Buy</small></a>
+    <a href="sell.html"><img src="icon-sell.svg"/><small>Sell</small></a>
+    <a href="chatbot.html"><img src="icon-chat.svg"/><small>Chat</small></a>
+  </nav>
+</div>
+
+<script>
+// Simple splash -> app transition
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    document.getElementById('splash').classList.add('fade-out');
+    setTimeout(function(){
+      document.getElementById('splash').style.display='none';
+      document.getElementById('app').classList.remove('hidden');
+    },700);
+  },1200);
+});
+</script>
+</body>
+</html>
